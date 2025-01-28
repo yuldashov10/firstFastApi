@@ -1,14 +1,14 @@
-from fastapi import Body, FastAPI
+import asyncio
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
 
 @app.get("/hi")
-def say_hello(
-        name: str = Body(embed=True),
-        age: int = Body(embed=True)
-) -> str:
-    return f"Hello, {name}! I'm {age} years old."
+async def say_hello() -> str:
+    await asyncio.sleep(1)
+    return f"Hello!"
 
 
 if __name__ == "__main__":

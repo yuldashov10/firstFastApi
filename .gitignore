@@ -1,0 +1,9 @@
+.vscode/
+.idea/
+.venv/
+.env/
+poetry.lock
+tmp.py
+examples/
+.DS_Store
+**/__pycache__/

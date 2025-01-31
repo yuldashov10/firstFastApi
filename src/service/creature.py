@@ -1,7 +1,5 @@
-from src.fake.creature import FakeCreatureData
+from src.data import creature as data
 from src.model.creature import Creature
-
-data = FakeCreatureData()
 
 
 def list() -> list[Creature]:

@@ -1,38 +1,49 @@
-from fastapi import APIRouter
+from typing import Optional
+from fastapi import APIRouter, HTTPException
 
+from core.exceptions import DuplicateRecordError, ObjectDoesNotExist
 from src.model.explorer import Explorer
-from src.fake.explorer import FakeExplorerData
-
-service = FakeExplorerData()
+from src.service import explorer as service
 
 router = APIRouter(prefix="/explorer")
 
 
+@router.get("")
 @router.get("/")
 def list() -> list[Explorer]:
     return service.list()
 
 
 @router.get("/{name}")
+@router.get("/{name}/")
 def get(name: str) -> Explorer:
-    return service.get(name)
+    try:
+        return service.get(name)
+    except ObjectDoesNotExist as err:
+        raise HTTPException(status_code=404, detail=err.msg)
 
 
-@router.post("/")
+@router.post("", status_code=201)
+@router.post("/", status_code=201)
 def create(explore: Explorer) -> Explorer:
-    return service.create(explore)
+    try:
+        return service.create(explore)
+    except DuplicateRecordError as err:
+        raise HTTPException(status_code=404, detail=err.msg)
 
 
 @router.patch("/")
 def modify(explore: Explorer) -> Explorer:
-    return service.modify(explore)
+    try:
+        return service.modify(explore)
+    except DuplicateRecordError as err:
+        raise HTTPException(status_code=404, detail=err.msg)
 
 
-@router.put("/")
-def replace(explore: Explorer) -> Explorer:
-    return service.replace(explore)
-
-
-@router.delete("/{name}")
+@router.delete("/{name}", status_code=204)
+@router.delete("/{name}/", status_code=204)
 def delete(name: str) -> None:
-    return service.delete(name)
+    try:
+        service.delete(name)
+    except ObjectDoesNotExist as err:
+        raise HTTPException(status_code=404, detail=err.msg)

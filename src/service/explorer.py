@@ -1,7 +1,6 @@
-from src.fake.explorer import FakeExplorerData
+from src.data import explorer as data
 from src.model.explorer import Explorer
 
-data = FakeExplorerData()
 
 
 def list() -> list[Explorer]:
@@ -24,5 +23,5 @@ def replace(explore: Explorer) -> Explorer:
     return data.replace(explore)
 
 
-def delete(name: str) -> None:
+def delete(name: str) -> bool:
     return data.delete(name)

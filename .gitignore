@@ -7,3 +7,5 @@ tmp.py
 examples/
 .DS_Store
 **/__pycache__/
+.env
+*.db

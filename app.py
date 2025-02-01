@@ -7,7 +7,7 @@ from opentelemetry import trace
 from opentelemetry import metrics
 
 tracer = trace.get_tracer("firstFastApi.tracer")
-meter = metrics.get_meter("diceroller.meter")
+meter = metrics.get_meter("firstFastApi.meter")
 
 roll_counter = meter.create_counter(
     "dice.rolls",
@@ -18,7 +18,7 @@ app = FastAPI()
 app.include_router(explorer.router)
 app.include_router(creature.router)
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, encoding="UTF-8")
 logger = logging.getLogger(__name__)
 
 

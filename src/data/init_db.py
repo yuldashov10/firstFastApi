@@ -25,7 +25,10 @@ def get_db(name: str | None = None, reset: bool = False):
     if not name:
         base_dir = Path(__file__).resolve().parent.parent
         db_name: str = config("DB_NAME", cast=str)
-        name = os.getenv("CRYPТID_SQLIТE_DB", os.path.join(base_dir, "db", db_name))
+        name = os.getenv(
+            "CRYPТID_SQLIТE_DB",
+            default=os.path.join(base_dir, "db", db_name)
+        )
 
     conn = connect(name, check_same_thread=False)
     cur = conn.cursor()

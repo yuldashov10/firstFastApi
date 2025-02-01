@@ -32,8 +32,8 @@ def model_to_dict(explorer: Explorer) -> dict:
 
 
 def list() -> list[Explorer]:
-    qry = "SELECT * FROM explorer"
-    cur.execute(qry)
+    query = "SELECT * FROM explorer"
+    cur.execute(query)
 
     return [row_to_model(row) for row in cur.fetchall()]
 

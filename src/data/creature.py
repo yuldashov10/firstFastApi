@@ -36,8 +36,8 @@ def model_to_dict(creature: Creature) -> dict:
 
 
 def list() -> list[Creature]:
-    qry = "SELECT * FROM creature"
-    cur.execute(qry)
+    query = "SELECT * FROM creature"
+    cur.execute(query)
 
     return [row_to_model(row) for row in cur.fetchall()]
 

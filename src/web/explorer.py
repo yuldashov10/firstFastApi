@@ -1,4 +1,3 @@
-from typing import Optional
 from fastapi import APIRouter, HTTPException
 
 from core.exceptions import DuplicateRecordError, ObjectDoesNotExist

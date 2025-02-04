@@ -16,6 +16,38 @@
 gunicorn app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
 ```
 
+## Базы данных
+
+### Реляционные базы данных и SQL
+
+Основные пакеты драйверов для `Python`
+
+- sqlite
+- psycopg
+- asyncpg
+- MySQLdb
+- PyMySQL
+- python-oracledb
+- pyodbc
+- pymssql
+- ibm_db
+- [SQLAlchemy](https://www.sqlalchemy.org/)
+- [SQLModel](https://sqlmodel.tiangolo.com/)
+- [Records](https://github.com/kennethreitz/records)
+- [EdgeDB](https://www.edgedb.com/)
+- [EdgeQL](https://docs.edgedb.com/database/edgeql)
+
+### Нереляционные (NoSQL) базы данных
+
+- [Redis](https://redis.io/)
+    - [redis-py](https://github.com/redis/redis-py)
+- [MongoDB](https://www.mongodb.com/)
+    - [PyMongo](https://pymongo.readthedocs.io)
+    - Motor
+- [Apache Cassandra](https://cassandra.apache.org/_/index.html)
+    - [DataStax Driver for Apache Cassandra](https://github.com/datastax/python-driver)
+- [Elasticsearch](https://www.elastic.co/elasticsearch)
+
 ## Полезный материал
 
 ### Тестирование
@@ -58,3 +90,15 @@ gunicorn app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind
 - [OpenTelemetry](https://opentelemetry.io/)
 - [OpenTelemetry FastAPI Instrumentation](https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/fastapi/fastapi.html)
 - [Implementing OpenTelemetry in FastAPI - A Practical Guide](https://signoz.io/blog/opentelemetry-fastapi/)
+
+### Базы данных
+
+- [Му Experience with EdgeDB](https://divan.dev/posts/edgedb/)
+
+
+### ИИ
+
+- [Chroma](https://docs.trychroma.com/docs/overview/introduction)
+- [Hugging Face](https://huggingface.co/)
+- []()
+- []()

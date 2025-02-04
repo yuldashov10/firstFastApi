@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from src.model.creature import Creature
 
-from src.service import creature  as service
+from src.service import creature as service
 
 router = APIRouter(prefix="/creature")
 
@@ -25,11 +25,6 @@ def create(creature: Creature) -> Creature:
 @router.patch("/")
 def modify(creature: Creature) -> Creature:
     return service.modify(creature)
-
-
-@router.put("/")
-def replace(creature: Creature) -> Creature:
-    return service.replace(creature)
 
 
 @router.delete("/{name}")

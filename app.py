@@ -37,16 +37,6 @@ def index() -> str:
     return "Hello!"
 
 
-@app.get("/echo/{thing}")
-def echo(thing: str) -> str:
-    return f"echoing {thing}"
-
-
-@app.get("/test_cors")
-def test_cors(request: Request):
-    print(request)
-
-
 if __name__ == "__main__":
     import uvicorn
 

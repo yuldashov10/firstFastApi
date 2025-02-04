@@ -10,3 +10,7 @@ examples/
 .env
 *.db
 static/
+.hypothesis
+**/.db
+**/fastData.db-journal
+.idea/**

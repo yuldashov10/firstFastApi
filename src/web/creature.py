@@ -1,7 +1,7 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
+import plotly.express as px
 
 from src.model.creature import Creature
-
 from src.service import creature as service
 
 router = APIRouter(prefix="/creature")
@@ -30,3 +30,12 @@ def modify(creature: Creature) -> Creature:
 @router.delete("/{name}")
 def delete(name: str) -> None:
     return service.delete(name)
+
+
+@router.get("/test")
+def test():
+    df = px.data.iris()
+    fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species")
+    fig_bytes = fig.to_image(format="png")
+
+    return Response(content=fig_bytes, media_type="image/png")

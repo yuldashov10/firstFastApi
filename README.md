@@ -48,6 +48,14 @@ gunicorn app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind
     - [DataStax Driver for Apache Cassandra](https://github.com/datastax/python-driver)
 - [Elasticsearch](https://www.elastic.co/elasticsearch)
 
+---
+
+## Файлы
+
+- [python-multipart](https://github.com/Kludex/python-multipart/)
+- [aiofiles](https://github.com/Tinche/aiofiles)
+
+
 ## Полезный материал
 
 ### Тестирование

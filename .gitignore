@@ -9,3 +9,4 @@ examples/
 **/__pycache__/
 .env
 *.db
+static/

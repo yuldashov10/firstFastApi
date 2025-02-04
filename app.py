@@ -1,19 +1,23 @@
+import os
 from pathlib import Path
 from typing import Generator
 
-from fastapi import FastAPI, Request, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, Form, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
-from starlette import status
-
-from src.web import explorer, creature, user
-import logging
-
+from fastapi.templating import Jinja2Templates
 from opentelemetry import trace
 from opentelemetry import metrics
+from starlette import status
+
+import logging
+from src.web import explorer, creature, user
+from src.fake import FakeCreatureData, FakeExplorerData
 
 BASE_DIR: str = str(Path(__file__).resolve().parent)
+
+template = Jinja2Templates(directory=os.path.join(BASE_DIR, "template"))
 
 tracer = trace.get_tracer("firstFastApi.tracer")
 meter = metrics.get_meter("firstFastApi.meter")
@@ -72,6 +76,30 @@ async def download_big_file(name: str) -> StreamingResponse:
     return StreamingResponse(
         content=read_file(name),
         status_code=status.HTTP_200_OK
+    )
+
+
+@app.get("/profile")
+def get_profile(name: str = Form()) -> str:
+    return f"Hi, {name}!"
+
+
+@app.post("/profile")
+def set_profile(name: str = Form()) -> str:
+    return f"Hi, {name}!"
+
+
+@app.get("/list")
+def explorers_and_creatures_list(request: Request):
+    creatures = FakeCreatureData()
+    explorers = FakeExplorerData()
+    return template.TemplateResponse(
+        "list.html",
+        {
+            "request": request,
+            "explorers": creatures.list(),
+            "creatures": explorers.list(),
+        }
     )
 
 
